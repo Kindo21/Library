@@ -81,7 +81,11 @@ $(document).ready(() => {
     createTable(myLibrary);
 });
 
-
+/*add event listener for button 
+event listener will invoke function to set 
+dom objects to variables or directly create the object
+and push the object to the array while also rerunning the
+create table function */
 
 /**<body>
   <h1>Adding 'a' and 'b'</h1>
