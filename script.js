@@ -50,17 +50,30 @@ createForm = () => {
     // var bookInputRead = document.createElement("input");
     const formRemove = document.getElementsByTagName('form');
 
-    $form = $("<form></form>");
-    $form.append('<label for="title">Enter Title:</label>');
-    $form.append('<input type="text" id="title" name="title">');
-    $form.append('<label for="Author">Enter Author:</label>');
-    $form.append('<input type="text" id="Author" name="Author">');
-    $form.append('<label for="Pages">Enter Pages:</label>');
-    $form.append('<input type="text" id="Pages" name="Pages">');
-    $form.append('<label for="Read">Have You Read this Book?:</label>');
-    $form.append('<input type="text" id="Read" name="Read">');
-    $form.append('<input type="button" value="button">');
-    $('body').append($form);
+    // form = $("<form></form>");
+    // form.append('<label for="title">Enter Title:</label>');
+    // form.append('<input type="text" id="title" name="title">');
+    // form.append('<label for="Author">Enter Author:</label>');
+    // form.append('<input type="text" id="Author" name="Author">');
+    // form.append('<label for="Pages">Enter Pages:</label>');
+    // form.append('<input type="text" id="Pages" name="Pages">');
+    // form.append('<label for="Read">Have You Read this Book?:</label>');
+    // form.append('<input type="text" id="Read" name="Read">');
+    // form.append('<button type="button" id= "bookSubmit" >Submit</button>');
+
+    let form = `<form id="mainForm">
+   <label for="title">Enter Title:</label>
+   <input type="text" id="title" name="title">
+   <label for="Author">Enter Author:</label>
+   <input type="text" id="Author" name="Author">
+   <label for="Pages">Enter Pages:</label>
+   <input type="text" id="Pages" name="Pages">
+   <label for="Read">Have You Read this Book?:</label>
+   <input type="text" id="Read" name="Read">
+   <button type="button" id= "bookSubmit" >Submit</button>
+</form>
+`;
+    $('body').append(form);
 
 }
 
