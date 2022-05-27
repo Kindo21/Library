@@ -9,15 +9,15 @@ var myLibrary =
  ["A Clockwork Orange", "Anthony Burgess", "160", 1]
 ]
 
-isRead = (flag) =>{
-    setFlag = flag;
-    if(setFlag = 1){
-        return "Has been Read";
-    }
-    else if(setFlag = 0){
-        return "Has not been Read";
-    }
-}
+// isRead = (flag) =>{
+//     setFlag = flag;
+//     if(setFlag = 1){
+//         return "Has been Read";
+//     }
+//     else if(setFlag = 0){
+//         return "Has not been Read";
+//     }
+// }
 
 
 createTable = (data) => {
@@ -77,8 +77,10 @@ createForm = () => {
 
 }
 
+$(document).ready(() => {
+    createTable(myLibrary);
+});
 
-createTable(myLibrary);
 
 
 /**<body>
