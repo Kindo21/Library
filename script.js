@@ -2,13 +2,22 @@
 
 var myLibrary = 
 [
- ["The Thirty-Nine Steps", "John Buchan", "138"],
- ["The Prime of Miss Jean Brodie"," Muriel Spark","150"], 
- ["A Single Man", "Christopher Isherwood", "152"], 
- ["Murphy", "Samuel Beckett", "158"], 
- ["A Clockwork Orange", "Anthony Burgess", "160"]
+ ["The Thirty-Nine Steps", "John Buchan", "138", 1],
+ ["The Prime of Miss Jean Brodie"," Muriel Spark","150", 0], 
+ ["A Single Man", "Christopher Isherwood", "152", 1], 
+ ["Murphy", "Samuel Beckett", "158", 0], 
+ ["A Clockwork Orange", "Anthony Burgess", "160", 1]
 ]
 
+isRead = (flag) =>{
+    setFlag = flag;
+    if(setFlag = 1){
+        return "Has been Read";
+    }
+    else if(setFlag = 0){
+        return "Has not been Read";
+    }
+}
 
 
 createTable = (data) => {
@@ -33,16 +42,54 @@ createTable = (data) => {
     
 }
 
+createForm = () => {
+    // var form = document.createElement("form");
+    // var bookInputTitle = document.createElement("input");
+    // var bookInputAuthor = document.createElement("input");
+    // var bookInputPages = document.createElement("input");
+    // var bookInputRead = document.createElement("input");
+    const formRemove = document.getElementsByTagName('form');
+
+    $form = $("<form></form>");
+    $form.append('<label for="title">Enter Title:</label>');
+    $form.append('<input type="text" id="title" name="title">');
+    $form.append('<label for="Author">Enter Author:</label>');
+    $form.append('<input type="text" id="Author" name="Author">');
+    $form.append('<label for="Pages">Enter Pages:</label>');
+    $form.append('<input type="text" id="Pages" name="Pages">');
+    $form.append('<label for="Read">Have You Read this Book?:</label>');
+    $form.append('<input type="text" id="Read" name="Read">');
+    $form.append('<input type="button" value="button">');
+    $('body').append($form);
+
+}
+
+
 createTable(myLibrary);
 
 
+/**<body>
+  <h1>Adding 'a' and 'b'</h1>
 
+  a: <input type="number" name="a" id="a"><br> b: <input type="number" name="b" id="b"><br>
+  <button onclick="add(document.getElementById('a').value,document.getElementById('b').value)">Add</button>
 
-function Book() {
+  <script>
+    function add(a, b) {
+      var sum = parseInt(a, 10) + parseInt(b, 10);
+      alert(sum);
+    }
+  </script>
+</body> */
+
+function Book(title, author, pages, read) {
     // the constructor...
     // Will use this to take the form object and create a book object
     // each book will have a button (function) to show if its been read
-    
+    this.bookTitle = title,
+    this.bookAuthor = author,
+    this.bookPages = pages,
+    this.bookRead = read
 }
   
 function addBookToLibrary() {
