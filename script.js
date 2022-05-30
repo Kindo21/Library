@@ -2,11 +2,11 @@
 
 var myLibrary = 
 [
- ["The Thirty-Nine Steps", "John Buchan", "138", 1],
- ["The Prime of Miss Jean Brodie"," Muriel Spark","150", 0], 
- ["A Single Man", "Christopher Isherwood", "152", 1], 
- ["Murphy", "Samuel Beckett", "158", 0], 
- ["A Clockwork Orange", "Anthony Burgess", "160", 1]
+ ["The Thirty-Nine Steps", "John Buchan", "138", "Read"],
+ ["The Prime of Miss Jean Brodie"," Muriel Spark","150", "Not Read"], 
+ ["A Single Man", "Christopher Isherwood", "152", "Read"], 
+ ["Murphy", "Samuel Beckett", "158", "Read"], 
+ ["A Clockwork Orange", "Anthony Burgess", "160", "Read"]
 ]
 
 // isRead = (flag) =>{
@@ -23,6 +23,7 @@ var myLibrary =
 createTable = (data) => {
     var table = document.getElementById('library');
     var tableBody = document.createElement('tbody')
+    tableBody.setAttribute("id", "mainTable")
 
     data.forEach(rowData => {
         var row = document.createElement('tr');
@@ -48,7 +49,8 @@ createForm = () => {
     // var bookInputAuthor = document.createElement("input");
     // var bookInputPages = document.createElement("input");
     // var bookInputRead = document.createElement("input");
-    const formRemove = document.getElementsByTagName('form');
+    const formExists = document.getElementById('mainForm');
+    
 
     // form = $("<form></form>");
     // form.append('<label for="title">Enter Title:</label>');
@@ -75,17 +77,43 @@ createForm = () => {
 `;
     $('body').append(form);
 
+    let bookSubmit = document.getElementById('bookSubmit')
+
+    bookSubmit.addEventListener("click", addBookToLibrary);
+
+    if(bookSubmit.getAttribute('listener') !== 'true'){
+        console.log('event has been attached');
+    }
+    
+    for (var i = 0, atts = bookSubmit.attributes, n = atts.length, arr = []; i < n; i++){
+        arr.push(atts[i].nodeName);
+        console.log(atts)
+    }
+
+    
+//     if (bookSubmit.getAttribute('listener') !== 'true') {
+//         bookSubmit.addEventListener('click', function (e) {
+//             const elementClicked = e.target;
+//             elementClicked.setAttribute('listener', 'true');
+//             console.log('event has been attached');
+//        });
+//    }
+
 }
 
 $(document).ready(() => {
     createTable(myLibrary);
 });
 
+
+
 /*add event listener for button 
 event listener will invoke function to set 
 dom objects to variables or directly create the object
 and push the object to the array while also rerunning the
 create table function */
+
+
 
 /**<body>
   <h1>Adding 'a' and 'b'</h1>
@@ -105,14 +133,65 @@ function Book(title, author, pages, read) {
     // the constructor...
     // Will use this to take the form object and create a book object
     // each book will have a button (function) to show if its been read
-    this.bookTitle = title,
-    this.bookAuthor = author,
-    this.bookPages = pages,
-    this.bookRead = read
+    // this.bookTitle = title,
+    // this.bookAuthor = author,
+    // this.bookPages = pages,
+    // this.bookRead = read
+
+    this.book = [title, author, pages, read];
 }
-  
-function addBookToLibrary() {
+
+
+
+
+  addBookToLibrary = () => {
     // do stuff here
     //take book object and add it to array
+
+    var getbookTitle = document.getElementById('title').value;
+    // Book.title = getbookTitle;
+    var getbookAuthor = document.getElementById('Author').value;
+    // Book.author = getbookAuthor;
+    var getbookPages = document.getElementById('Pages').value;
+    // Book.pages = getbookPages;
+    var getbookRead = document.getElementById('Read').value;
+    // Book.read  = getbookRead;
+
+    
+
+    const newBook = new Book(getbookTitle, getbookAuthor, getbookPages, getbookRead);
+
+    
+
+     for(var element in newBook) {
+         myLibrary.push(newBook[element]);
+     }
+
+     
+   // myLibrary.push(newBook);
+
+    console.log(myLibrary);
+
+    let tbodyRef = document.getElementById('mainTable'),
+    row = tbodyRef.insertRow(tbodyRef.length),
+    cell1 = row.insertCell(0),
+    cell2 = row.insertCell(1),
+    cell3 = row.insertCell(2),
+    cell4 = row.insertCell(3);
+
+    cell1.innerHTML = myLibrary[myLibrary.length - 1][0];
+    cell2.innerHTML = myLibrary[myLibrary.length - 1][1];
+    cell3.innerHTML = myLibrary[myLibrary.length - 1][2];
+    cell4.innerHTML = myLibrary[myLibrary.length - 1][3];
+
+    // cell1.innerHTML = myLibrary.find(element => element.lastIndexOf(5));
+
+    // const lastIndex = (element) => element = 5;
+
+    // cell1.innerHTML = myLibrary.findIndex(lastIndex);
+     
+    
 }
   
+
+
