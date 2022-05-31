@@ -228,24 +228,35 @@ function Book(title, author, pages, read){
     //   }
 
 
-    // let deletebutton = `<button type="button">Remove</button>`;  
+     
     
     // $('tr').append(deletebutton);
 
-    // $('#mainTable').on('click', 'input[type="button"]', function(e){
+    // $('mainTable').on('click', 'input[type="button"]', function(e){
     //     $(this).closest('tr').remove()
     //  })
+
+    
+      //let deletebutton = `<button onclick="myDeleteFunction()" type="button">Remove</button>`; 
+
     row = tbodyRef.insertRow(tbodyRef.length),
     cell1 = row.insertCell(0),
     cell2 = row.insertCell(1),
     cell3 = row.insertCell(2),
     cell4 = row.insertCell(3);
+    cell5 = row.insertCell(4);
+
 
     cell1.innerHTML = Object.values(newBook)[0];
     cell2.innerHTML = Object.values(newBook)[1];
     cell3.innerHTML = Object.values(newBook)[2];
     cell4.innerHTML = Object.values(newBook)[3];
+    cell5.innerHTML = `<button onclick="buttonSelector" type="button">Remove</button>`
     
+    $('#mainTable').on('click', buttonSelector, function(){
+        $(this).closest ('tr').remove ();
+    });
+
     // newBook.Index = myLibrary.lastIndexOf(getbookTitle.value);
 
     // console.log(newBook.Index);
