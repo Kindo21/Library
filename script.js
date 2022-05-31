@@ -285,31 +285,23 @@ function Book(title, author, pages, read){
         //loop and reassign index numbers and id numbers
         console.log(myLibrary)
     });
-    /** 
-     * let myArray = [
-  {id: 0, name: "Jhon"},
-  {id: 1, name: "Sara"},
-  {id: 2, name: "Domnic"},
-  {id: 3, name: "Bravo"}
-],
-    
-//Find index of specific object using findIndex method.    
-objIndex = myArray.findIndex((obj => obj.id == 1));
 
-//Log object to Console.
-console.log("Before update: ", myArray[objIndex])
-
-//Update object's name property.
-myArray[objIndex].name = "Laila"
-
-//Log object to console again.
-console.log("After update: ", myArray[objIndex])
-     */
     $('#mainTable').on('click', '.status', function (e){
         e.preventDefault();
+        
         let indexOf = $(this).closest('tr').index();
-        myLibrary[indexOf].Read = "Read"
+        let findStatus = myLibrary[indexOf].Read
+        if(findStatus === "Read"){
+            $(this).closest('tr').find('td.readStatus').text("Unread");
+            myLibrary[indexOf].Read = "Read"
+        }
+        else if(findStatus === "Unread"){
+            $(this).closest('tr').find('td.readStatus').text("Read");
+            myLibrary[indexOf].Read = "Unread"
+        }
+        else
         $(this).closest('tr').find('td.readStatus').text("Read");
+        myLibrary[indexOf].Read = "Read"
         console.log(myLibrary);
     })
    
