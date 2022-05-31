@@ -254,6 +254,7 @@ function Book(title, author, pages, read){
     cell2.innerHTML = Object.values(newBook)[1];
     cell3.innerHTML = Object.values(newBook)[2];
     cell4.innerHTML = Object.values(newBook)[3];
+    cell4.className = "readStatus"
     cell5.innerHTML = Object.values(newBook)[4]; 
     row.id = Object.values(newBook)[4];
     cell5.id = Object.values(newBook)[4];
@@ -261,7 +262,7 @@ function Book(title, author, pages, read){
     // cell6.innerHTML = `<button onclick="removeRow()" type="button">Remove</button>`
     cell6.innerHTML = `<button type="button" class="delete">Remove</button>`
     cell7.innerHTML = `<button type="button" class="status">Change Status</button>`
-    
+    newBook.Index = myLibrary.map(function(Book) { return Book.id; }).indexOf(Object.values(newBook)[4]);
     //with code can set indexof using id
     
     // removeRow = () => {
@@ -270,18 +271,50 @@ function Book(title, author, pages, read){
     //     // $(this).closest("tr").remove();
     //     $("table#mainTable tr#0").remove();
     // }
-
+    
     $('#mainTable').on('click', '.delete', function (e) {
         e.preventDefault();
+        //set a variable equal to the index corresponding to statement below
+        
+        let indexOf = $(this).closest('tr').index();
+        myLibrary.splice(indexOf, 1);
         $(this).closest('tr').remove();
-        var indexOf = myLibrary.map(function(Book) { return Book.id; }).indexOf(Object.values(newBook)[4]);
-
-        myLibrary.splice(myLibrary.indexOf(indexOf));
+        
+        //remove array based on index grabbed from above
+        
+        //loop and reassign index numbers and id numbers
         console.log(myLibrary)
     });
+    /** 
+     * let myArray = [
+  {id: 0, name: "Jhon"},
+  {id: 1, name: "Sara"},
+  {id: 2, name: "Domnic"},
+  {id: 3, name: "Bravo"}
+],
+    
+//Find index of specific object using findIndex method.    
+objIndex = myArray.findIndex((obj => obj.id == 1));
+
+//Log object to Console.
+console.log("Before update: ", myArray[objIndex])
+
+//Update object's name property.
+myArray[objIndex].name = "Laila"
+
+//Log object to console again.
+console.log("After update: ", myArray[objIndex])
+     */
+    $('#mainTable').on('click', '.status', function (e){
+        e.preventDefault();
+        let indexOf = $(this).closest('tr').index();
+        myLibrary[indexOf].Read = "Read"
+        $(this).closest('tr').find('td.readStatus').text("Read");
+        console.log(myLibrary);
+    })
    
     // newBook.Index = myLibrary.lastIndexOf(getbookTitle.value);
-
+    //when rendering the row, add a data attribute for the index
     // console.log(newBook.Index);
     /**whenever a book object is created generate an id assign id to the constructor function somehow and when constructor function is clicked delete object by id */
 }
