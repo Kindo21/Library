@@ -240,23 +240,46 @@ function Book(title, author, pages, read){
       //let deletebutton = `<button onclick="myDeleteFunction()" type="button">Remove</button>`; 
 
     row = tbodyRef.insertRow(tbodyRef.length),
+    
     cell1 = row.insertCell(0),
     cell2 = row.insertCell(1),
     cell3 = row.insertCell(2),
     cell4 = row.insertCell(3);
     cell5 = row.insertCell(4);
+    cell6 = row.insertCell(5);
+    cell7 = row.insertCell(6);
 
 
     cell1.innerHTML = Object.values(newBook)[0];
     cell2.innerHTML = Object.values(newBook)[1];
     cell3.innerHTML = Object.values(newBook)[2];
     cell4.innerHTML = Object.values(newBook)[3];
-    cell5.innerHTML = `<button onclick="buttonSelector" type="button">Remove</button>`
+    cell5.innerHTML = Object.values(newBook)[4]; 
+    row.id = Object.values(newBook)[4];
+    cell5.id = Object.values(newBook)[4];
+    let id = Object.values(newBook)[4];
+    // cell6.innerHTML = `<button onclick="removeRow()" type="button">Remove</button>`
+    cell6.innerHTML = `<button type="button" class="delete">Remove</button>`
+    cell7.innerHTML = `<button type="button" class="status">Change Status</button>`
     
-    $('#mainTable').on('click', buttonSelector, function(){
-        $(this).closest ('tr').remove ();
-    });
+    //with code can set indexof using id
+    
+    // removeRow = () => {
+    //     // let idFor = idOf;
+    //     // document.getElementById(`${id}`).deleteRow(0);
+    //     // $(this).closest("tr").remove();
+    //     $("table#mainTable tr#0").remove();
+    // }
 
+    $('#mainTable').on('click', '.delete', function (e) {
+        e.preventDefault();
+        $(this).closest('tr').remove();
+        var indexOf = myLibrary.map(function(Book) { return Book.id; }).indexOf(Object.values(newBook)[4]);
+
+        myLibrary.splice(myLibrary.indexOf(indexOf));
+        console.log(myLibrary)
+    });
+   
     // newBook.Index = myLibrary.lastIndexOf(getbookTitle.value);
 
     // console.log(newBook.Index);
