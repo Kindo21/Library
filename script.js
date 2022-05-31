@@ -39,7 +39,7 @@ createTable = (data) => {
     table.appendChild(tableBody);
     document.body.appendChild(table);
     
-
+    // let table = `<table ></table>`
     
 }
 
@@ -151,6 +151,7 @@ function Book(title, author, pages, read){
     this.Pages = pages;
     this.Read = read;
     this.id = myLibrary.length;
+    //this.button = document.createElement("BUTTON")
     this.Index;
 }
 
@@ -219,27 +220,31 @@ function Book(title, author, pages, read){
     //     tr.insertCell().textContent = obj.Pages;
     //     tr.insertCell().textContent = obj.Read;
     // }
-    let tr = tbodyRef.insertRow();
-    for (const [key, value] of Object.entries(newBook)) {
-        tr.insertCell().textContent = value ; 
-      }
 
+    //dynamically add object to html with loop
+    // let tr = tbodyRef.insertRow();
+    // for (const [key, value] of Object.entries(newBook)) {
+    //     tr.insertCell().textContent = value ; 
+    //   }
+
+
+    // let deletebutton = `<button type="button">Remove</button>`;  
     
+    // $('tr').append(deletebutton);
 
-    removeBook = () => {
-        getAttribute
-    }
-    // row = tbodyRef.insertRow(tbodyRef.length),
-    // cell1 = row.insertCell(0),
-    // cell2 = row.insertCell(1),
-    // cell3 = row.insertCell(2),
-    // cell4 = row.insertCell(3);
+    // $('#mainTable').on('click', 'input[type="button"]', function(e){
+    //     $(this).closest('tr').remove()
+    //  })
+    row = tbodyRef.insertRow(tbodyRef.length),
+    cell1 = row.insertCell(0),
+    cell2 = row.insertCell(1),
+    cell3 = row.insertCell(2),
+    cell4 = row.insertCell(3);
 
-    // cell1.innerHTML = myLibrary[myLibrary.length - 1][0];
-    // cell2.innerHTML = myLibrary[myLibrary.length - 1][1];
-    // cell3.innerHTML = myLibrary[myLibrary.length - 1][2];
-    // cell4.innerHTML = myLibrary[myLibrary.length - 1][3];
-
+    cell1.innerHTML = Object.values(newBook)[0];
+    cell2.innerHTML = Object.values(newBook)[1];
+    cell3.innerHTML = Object.values(newBook)[2];
+    cell4.innerHTML = Object.values(newBook)[3];
     
     // newBook.Index = myLibrary.lastIndexOf(getbookTitle.value);
 
