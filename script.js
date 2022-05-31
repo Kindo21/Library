@@ -1,14 +1,14 @@
 
 
-var myLibrary = 
-[
- ["The Thirty-Nine Steps", "John Buchan", "138", "Read"],
- ["The Prime of Miss Jean Brodie"," Muriel Spark","150", "Not Read"], 
- ["A Single Man", "Christopher Isherwood", "152", "Read"], 
- ["Murphy", "Samuel Beckett", "158", "Read"], 
- ["A Clockwork Orange", "Anthony Burgess", "160", "Read"]
-]
-
+// var myLibrary = 
+// [
+//  ["The Thirty-Nine Steps", "John Buchan", "138", "Read"],
+//  ["The Prime of Miss Jean Brodie"," Muriel Spark","150", "Not Read"], 
+//  ["A Single Man", "Christopher Isherwood", "152", "Read"], 
+//  ["Murphy", "Samuel Beckett", "158", "Read"], 
+//  ["A Clockwork Orange", "Anthony Burgess", "160", "Read"]
+// ]
+var myLibrary = [];
 // isRead = (flag) =>{
 //     setFlag = flag;
 //     if(setFlag = 1){
@@ -129,18 +129,30 @@ create table function */
   </script>
 </body> */
 
-function Book(title, author, pages, read) {
-    // the constructor...
-    // Will use this to take the form object and create a book object
-    // each book will have a button (function) to show if its been read
-    // this.bookTitle = title,
-    // this.bookAuthor = author,
-    // this.bookPages = pages,
-    // this.bookRead = read
+// function Book(title, author, pages, read) {
+//     // the constructor...
+//     // Will use this to take the form object and create a book object
+//     // each book will have a button (function) to show if its been read
+//     // this.bookTitle = title,
+//     // this.bookAuthor = author,
+//     // this.bookPages = pages,
+//     // this.bookRead = read
 
-    this.book = [title, author, pages, read];
+//     this.book = [title, author, pages, read];
+
+//     // this.removeBook = () => {
+//     //     myLibrary.pop(myLibrary.length - 1); 
+//     // }
+// }
+
+function Book(title, author, pages, read){
+    this.Title = title;
+    this.Author = author;
+    this.Pages = pages;
+    this.Read = read;
+    this.id = myLibrary.length;
+    this.Index;
 }
-
 
 
 
@@ -148,49 +160,91 @@ function Book(title, author, pages, read) {
     // do stuff here
     //take book object and add it to array
 
-    var getbookTitle = document.getElementById('title').value;
+    
+
+    var Title = document.getElementById('title').value;
     // Book.title = getbookTitle;
-    var getbookAuthor = document.getElementById('Author').value;
+    var Author = document.getElementById('Author').value;
     // Book.author = getbookAuthor;
-    var getbookPages = document.getElementById('Pages').value;
+    var Pages = document.getElementById('Pages').value;
     // Book.pages = getbookPages;
-    var getbookRead = document.getElementById('Read').value;
+    var Read = document.getElementById('Read').value;
     // Book.read  = getbookRead;
 
     
 
-    const newBook = new Book(getbookTitle, getbookAuthor, getbookPages, getbookRead);
+    // const newBook = new Book(getbookTitle, getbookAuthor, getbookPages, getbookRead);
+
+    const newBook = new Book(Title, Author, Pages, Read);
+
+    
+    //set an interator starting at 0 
+    //  for(var element in newBook) {
+    //      myLibrary.push(newBook[element]);
+    //  }
+
+    myLibrary.push(newBook);
+
+    
+    // let getbookID = newBook.id;
+
+    //  newBook.Index = myLibrary.findIndex(getbookID);
+
+    // for (var prop in newBook) {
+    //     if (newBook.hasOwnProperty(prop)) {
+    //        var innerObj = {};
+    //        innerObj[prop] = newBook[prop];
+    //        myLibrary.push(innerObj)
+    //     }
+    //  }
+     
+    //  let wantedArray = myLibrary.map((obj, index) => {
+    //     return {
+    //       name: obj.name,
+    //       [`count${index+1}`]: obj.count
+    //     }
+    //  });
+
+    //  console.log(wantedArray)
+
+     console.log(myLibrary);
+
+    //console.log(myLibrary);
+
+    let tbodyRef = document.getElementById('mainTable');
+    // for (let obj of myLibrary){
+    //     let tr = tbodyRef.insertRow();
+    //     tr.insertCell().textContent = obj.Title;
+    //     tr.insertCell().textContent = obj.Author;
+    //     tr.insertCell().textContent = obj.Pages;
+    //     tr.insertCell().textContent = obj.Read;
+    // }
+    let tr = tbodyRef.insertRow();
+    for (const [key, value] of Object.entries(newBook)) {
+        tr.insertCell().textContent = value ; 
+      }
 
     
 
-     for(var element in newBook) {
-         myLibrary.push(newBook[element]);
-     }
+    removeBook = () => {
+        getAttribute
+    }
+    // row = tbodyRef.insertRow(tbodyRef.length),
+    // cell1 = row.insertCell(0),
+    // cell2 = row.insertCell(1),
+    // cell3 = row.insertCell(2),
+    // cell4 = row.insertCell(3);
 
-     
-   // myLibrary.push(newBook);
+    // cell1.innerHTML = myLibrary[myLibrary.length - 1][0];
+    // cell2.innerHTML = myLibrary[myLibrary.length - 1][1];
+    // cell3.innerHTML = myLibrary[myLibrary.length - 1][2];
+    // cell4.innerHTML = myLibrary[myLibrary.length - 1][3];
 
-    console.log(myLibrary);
-
-    let tbodyRef = document.getElementById('mainTable'),
-    row = tbodyRef.insertRow(tbodyRef.length),
-    cell1 = row.insertCell(0),
-    cell2 = row.insertCell(1),
-    cell3 = row.insertCell(2),
-    cell4 = row.insertCell(3);
-
-    cell1.innerHTML = myLibrary[myLibrary.length - 1][0];
-    cell2.innerHTML = myLibrary[myLibrary.length - 1][1];
-    cell3.innerHTML = myLibrary[myLibrary.length - 1][2];
-    cell4.innerHTML = myLibrary[myLibrary.length - 1][3];
-
-    // cell1.innerHTML = myLibrary.find(element => element.lastIndexOf(5));
-
-    // const lastIndex = (element) => element = 5;
-
-    // cell1.innerHTML = myLibrary.findIndex(lastIndex);
-     
     
+    // newBook.Index = myLibrary.lastIndexOf(getbookTitle.value);
+
+    // console.log(newBook.Index);
+    /**whenever a book object is created generate an id assign id to the constructor function somehow and when constructor function is clicked delete object by id */
 }
   
 
