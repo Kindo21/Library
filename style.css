@@ -1,0 +1,13 @@
+table, th, td {
+    border: 1px solid black;
+  }
+
+  form {
+      display: flex;
+      flex-direction: column;
+      
+  }
+
+  input  {
+    width: 10%
+  }
