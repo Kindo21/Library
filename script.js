@@ -354,59 +354,76 @@ function addBook(book){
 }
 
 function setRead(){
-    for(const obj of library){
-        if  (obj.name === 'LOTR') {
-            obj.read = true;
+    // for(const obj of library){
+    //     if  (obj.name === 'asd') {
+    //         obj.read = true;
 
-            break;
-        }
-    }
+    //         break;
+    //     }
+    // }
+    
 }
+$(document).ready(
+      $('table').on('click', function (e){
+        e.preventDefault();
+        
+        let indexOf = $(this).closest('tr').index();
+        console.log(indexOf);
+        let findStatus = library[indexOf]
+        console.log(findStatus);
+
+        // if(findStatus === "true"){
+        //     $(this).closest('tr').find('td').text("false");
+        //     library[indexOf].Read = "false"
+        // }
+        // else if(findStatus === "false"){
+        //     $(this).closest('tr').find('td').text("true");
+        //     library[indexOf].Read = "true"
+        // }
+        // else
+        // $(this).closest('tr').find('td').text("true");
+        // library[indexOf].Read = "true"
+        // console.log(library);
+    })
+)
+  
+
+
 
 function removeBook(){
-    library = library.filter(function( obj ){
-        return obj.name !== "LOTR";
-    })
+   
     $("table").on("click", "button", function() {
         $(this).closest("tr").remove();
      });
+     $("table").on('click',"button", function(e){
+        let index =  ($(this).closest('td').parent()[0].sectionRowIndex);
+        library.splice(index, 1);
+     })
+ 
+    
 }
 
-function writeTable() {
-    library.forEach(function(item){
-        $('tbody').append('<tr><td>'+item.author+'</td><td>'+item.name+'</td><td>'+item.pages+'</td><td>'+item.read+ 
-        '</td><td>' + '<button class="btn btn-large btn-danger" type="button" onclick = "removeBook()">Remove</button>' + '</td></tr>')
-    })
+function writeTable(book) {
+   
+
+    $('tbody').append('<tr><td>'+book['author']+'</td><td>'+book['name']+'</td><td>'+book['pages']+'</td><td id = status>'+book['read']+ 
+  '</td><td>' + '<button class="btn btn-large btn-danger" type="button" onclick = "removeBook()">Remove</button>'  + '</td></tr>')
+    
 }
 
-
-
-function newRow(){
-     $('tbody').append('<tr><td></td><td></td><td></td><td></td><td><button class="btn btn-large btn-danger" type="button" onclick = "removeBook()">Remove</button></td></tr>')
-}
-
-function addBook(){
-
-}
 
 function bookTest(){
-    $(document).ready(
-        // let author = $('#Author'),
-        // let title = $('#Title'),
-        // let pages = $('#Pages'),
-    
-        book1 = new Book($('#Author'), $('#Title'), $('#Pages') ),
-        addBook(book1),
-    writeTable()
+    var getAuthor = $('#Author').val();
+    var getTitle = $('#Title').val();
+    var getPages = $('#Pages').val();
+    console.log(getAuthor);
+    console.log(getTitle);
+    console.log(getPages);
+    book = new Book(getAuthor,getTitle , getPages );
+    addBook(book);
+    writeTable(book);
 
-    )
    
 }
 
-
-// $(document).ready(function bookTest() {
-//     book1 = new Book($('#Author'), $('#Title'), $('#Pages'))
-//     addBook(book1)
-//     writeTable()
-// });
 
