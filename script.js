@@ -7,21 +7,6 @@ class Book{
         this.read = false;
 
     }
-
-    setAuthor(author){
-        this.author = author;
-    }
-
-    setName(name){
-        this.name = name;
-    }
-
-
-    setPages(pages){
-        this.pages = pages;
-    }
-
-    
 }
 
 //maybe put this into a module later
@@ -48,35 +33,31 @@ function setRead(x){
                 $(this).closest("td").text("False");
              });
         }
-    
-    
-
 }
-
 
 function removeBook(){
    
     $("table").on("click", "button", function() {
         $(this).closest("tr").remove();
      });
-     $("table").on('click',"button", function(e){
+     $("table").on('click',"button", function(){
         let index =  ($(this).closest('td').parent()[0].sectionRowIndex);
         library.splice(index, 1);
-     })
- 
-    
+     })   
 }
 
 function writeTable(book) {
    
 
-    $('tbody').append('<tr onclick="setRead(this)"><td>'+book['author']+'</td><td>'+book['name']+'</td><td>'+book['pages']+'</td><td id = status >'+book['read']+ 
-  '</td><td>' + '<button class="btn btn-large btn-danger" type="button" onclick = "removeBook()">Remove</button>'  + '</td></tr>')
+    $('tbody').append('<tr onclick="setRead(this)"><td>'+book['author']+
+    '</td><td>'+book['name']+'</td><td>'+book['pages']+
+    '</td><td id = status >'+book['read']+ '</td><td>' + 
+    '<button class="btn btn-large btn-danger" type="button" onclick = "removeBook()">Remove</button>'  
+    + '</td></tr>')
     
 }
 
-
-function bookTest(){
+function librarian(){
     var getAuthor = $('#Author').val();
     var getTitle = $('#Title').val();
     var getPages = $('#Pages').val();
@@ -87,8 +68,7 @@ function bookTest(){
         $('#Author').val('');
         $('#Title').val('');
         $('#Pages').val('');
-      });
-   
+      });   
 }
 
 
